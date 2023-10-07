@@ -10,11 +10,12 @@ import './styles/App.css'
 function App() {
   const [currentTime, setCurrentTime] = useState(0);
 
+  /*
   useEffect(() => {
     fetch('/api/time').then(res => res.json()).then(data => {
       setCurrentTime(data.data);
     });
-  }, []);
+  }, []); */
 
   return (
     <BrowserRouter>
