@@ -1,15 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { HeaderMenu } from '../components/HeaderMenu'
 import axios from "axios";
 import { VideoInput } from '../components/VideoInput';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
+    
     const [file, setFile] = useState(null);
     const [source, setSource] = useState();
     const [progress, setProgress] = useState({ started: false, pc: 0 });
     const [msg, setMsg] = useState(null);
 
+    const navigate = useNavigate();
 
+    
     const handlePreUpload = () => {
         if (!file) {
             setMsg("No file selected yet!")
@@ -32,19 +36,20 @@ function Home() {
         setProgress(prevState => {
             return { ...prevState, started: true }
         })
-        axios.post('http://httpbin.org/post', fd, {
+        axios.post('/upload', fd, {
             onUploadProgress: (progressEvent) => {
                 setProgress(prevState => {
                     return { ...prevState, pc: progressEvent.progress * 100 }
                 })
             },
             headers: {
-                'Custom-Header': 'value',
+                'Custom-Header': 'multipart/form-data',
             }
         })
             .then(res => {
                 setMsg('loading sucessful')
                 console.log(res.data);
+                navigate("/generate")
             })
             .catch(err => {
                 setMsg('Upload failed')
