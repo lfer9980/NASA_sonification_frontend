@@ -5,8 +5,6 @@ import { About } from './pages/About';
 import { ErrorPage } from './pages/Error';
 import { Home } from './pages/Home';
 
-import './styles/App.css'
-
 function App() {
   const [currentTime, setCurrentTime] = useState(0);
 

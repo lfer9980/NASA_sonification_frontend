@@ -4,8 +4,11 @@ import axios from "axios";
 import { VideoInput } from '../components/VideoInput';
 import { useNavigate } from 'react-router-dom';
 
+import "../styles/paralax.scss";
+import "../styles/Home.scss";
+
 function Home() {
-    
+
     const [file, setFile] = useState(null);
     const [source, setSource] = useState();
     const [progress, setProgress] = useState({ started: false, pc: 0 });
@@ -13,7 +16,7 @@ function Home() {
 
     const navigate = useNavigate();
 
-    
+
     const handlePreUpload = () => {
         if (!file) {
             setMsg("No file selected yet!")
@@ -61,9 +64,15 @@ function Home() {
     return (
         <>
             <HeaderMenu />
+            <div id='stars'></div>
+            <div id='stars2'></div>
+            <div id='stars3'></div>
             <main>
-                <h1>GAN's AI SONIFICATION FOR NASA</h1>
                 <section className='load-section'>
+                    <h1>GAN's AI SONIFICATION FOR NASA SPACE APPS</h1>
+                    <p className='p2'>
+                        Lorem ipsum dolor sit amet consectetur. Aliquam auctor faucibus sed ipsum quis mauris urna. Nunc sit id quam posuere senectus sem sed sem. Aliquet ridiculus mauris felis pellentesque suspendisse eget a. Ullamcorper lacus fringilla egestas aenean praesent tellus nec.
+                    </p>
                     <div className='load-section__form'>
                         <input
                             onChange={(e) => {
@@ -73,16 +82,15 @@ function Home() {
                             accept=".mp4"
                             className='load-section__form__input'
                         />
+                        {
+                            source &&
+                            <VideoInput
+                                width={400}
+                                height={300}
+                                source={source}
+                            />
+                        }
                     </div>
-
-                    {
-                        source &&
-                        <VideoInput
-                            width={400}
-                            height={300}
-                            source={source}
-                        />
-                    }
 
                     {
                         progress.started &&
@@ -90,7 +98,7 @@ function Home() {
                     }
 
                     {
-                        msg && <p>{msg}</p>
+                        msg && <p className='message p2 bold'>{msg}</p>
                     }
 
                     {
@@ -98,7 +106,7 @@ function Home() {
                             <button
                                 onClick={handleUpload}
                             >
-                                Upload your video to GAN AI 
+                                Upload your video to GAN AI
                             </button>
                             :
 

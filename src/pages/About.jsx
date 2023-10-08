@@ -5,9 +5,14 @@ function About() {
     return (
         <>
         <HeaderMenu />
-        <p>
-            about
-        </p>
+        <div id='stars'></div>
+            <div id='stars2'></div>
+            <div id='stars3'></div>
+        <main>
+            <section>
+                about
+            </section>
+        </main>
         </>
     );
 }

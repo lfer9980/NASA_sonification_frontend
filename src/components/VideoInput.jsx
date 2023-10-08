@@ -1,5 +1,7 @@
 import React from 'react'
 
+import "../styles/VideoInput.scss";
+
 function VideoInput(props) {
 
     const { width, height, source } = props;
